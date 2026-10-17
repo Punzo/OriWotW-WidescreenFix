@@ -2,6 +2,13 @@
 
 >A BepInEx 6 plugin that removes the vertical black bars and enables full 32:9 (and other super-ultrawide) support for Ori and the Will of the Wisps (Steam, 2026 build).
 
+## Why another fix?
+The previously available ultrawide fixes no longer work with the current Steam version of the game (2026 build):
+- **[WSGF hex edit by Helifax](https://www.wsgf.org/node/30070)** (`60 E5 18 40` → `00 00 10 41` in `GameAssembly.dll`): patches the camera aspect limit, but on its own it does not remove the black bars on the current build, because 32:9 resolutions are still hidden from the in-game menu.
+- **[PCGamingWiki "Superwide & Multimonitor Fix"](https://community.pcgamingwiki.com/files/file/1839-ori-and-the-will-of-the-wisps-superwide-multimonitor-fix/)**: made for the older Game Pass / Microsoft Store version, not the current Steam build.
+
+This plugin patches the game at runtime instead of hex-editing the executable, so it does not depend on byte offsets that change between game updates.
+
 ## Features
 - Removes the pillarboxing the game applies above 21:9: the camera fills the whole screen (tested only on 32:9)
 - Adds 32:9, 32:10 and 48:9 resolutions (e.g. 5120x1440) to the in-game resolution list
