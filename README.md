@@ -21,6 +21,8 @@ The game is Unity 2018.4 built with IL2CPP. Two things limit it to 21:9:
 4. Place `WidescreenFix.dll` in the `BepInEx/plugins/` folder inside your game directory.
 5. Launch the game and choose your 32:9 resolution in the options if it isn't selected already.
 
+> BepInEx opens a console window at startup. The red lines in it are the game's own Unity messages, not errors from this mod. To hide the console, set `Enabled = false` under `[Logging.Console]` in `BepInEx/config/BepInEx.cfg`; the log is still written to `BepInEx/LogOutput.log`.
+
 ## Configuration
 After the first launch, edit `BepInEx/config/com.punzo.oriwotw.widescreenfix.cfg`:
 
