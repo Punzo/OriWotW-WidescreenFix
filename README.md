@@ -22,13 +22,14 @@ The game is Unity 2018.4 built with IL2CPP. Two things limit it to 21:9:
 - `ResolutionOptions.s_allowedAspectRatios` only lists 16:9, 16:10, 5:4, 4:3 and the 21:9 variants, so 32:9 resolutions are hidden from the menu. The plugin appends the missing ratios.
 
 ## Installation
-1. **Install [BepInEx 6 bleeding-edge, Unity IL2CPP x64](https://builds.bepinex.dev/projects/bepinex_be)** for the game (extract it into the folder that contains `oriwotw.exe`). BepInEx 5 does **not** work: the game is IL2CPP.
-2. Launch the game once and wait: the first start takes a while as BepInEx generates its interop assemblies.
-3. Build or download `WidescreenFix.dll`.
-4. Place `WidescreenFix.dll` in the `BepInEx/plugins/` folder inside your game directory.
-5. Launch the game and choose your 32:9 resolution in the options if it isn't selected already.
+1. Download `OriWotW-WidescreenFix-x.y.z.zip` from the [Releases](https://github.com/Punzo/OriWotW-WidescreenFix/releases) page.
+2. Extract it into the game folder, the one that contains `oriwotw.exe` (in Steam: right-click the game → *Manage* → *Browse local files*).
+3. Launch the game. **The first start takes a few minutes** (black screen or no window) while BepInEx prepares itself; it needs an internet connection that one time. Later starts are normal.
+4. Choose your 32:9 resolution in the options if it isn't selected already.
 
-> BepInEx opens a console window at startup. The red lines in it are the game's own Unity messages, not errors from this mod. To hide the console, set `Enabled = false` under `[Logging.Console]` in `BepInEx/config/BepInEx.cfg`; the log is still written to `BepInEx/LogOutput.log`.
+The zip already contains [BepInEx 6](https://github.com/BepInEx/BepInEx) (bleeding-edge build be.789, Unity IL2CPP x64), set up with its console window disabled. If you already have BepInEx 6 installed, you can instead copy only `WidescreenFix.dll` into `BepInEx/plugins/`. BepInEx 5 does **not** work: the game is IL2CPP.
+
+To uninstall, delete `winhttp.dll`, `doorstop_config.ini`, `.doorstop_version` and the `BepInEx` and `dotnet` folders from the game folder.
 
 ## Configuration
 After the first launch, edit `BepInEx/config/com.punzo.oriwotw.widescreenfix.cfg`:
@@ -49,6 +50,12 @@ You need the .NET [SDK](https://dotnet.microsoft.com/en-us/download) (6.0+) and 
 	```
 	If the game is not in the default Steam folder, add `-p:GameDir="D:\path\to\Ori and the Will of the Wisps"`.
 3. The compiled DLL will be in `bin/Release/net6.0/` and is copied automatically to `BepInEx/plugins/WidescreenFix/` (disable with `-p:CopyToGame=false`).
+
+To create the release zip (BepInEx + plugin, ready to extract), run:
+```
+powershell -ExecutionPolicy Bypass -File package.ps1
+```
+It builds the plugin, downloads the pinned BepInEx version into `.cache/`, and writes `release/OriWotW-WidescreenFix-<version>.zip` and `release/WidescreenFix.dll`.
 
 ### Project References
 The `.csproj` references these DLLs from your game install:
