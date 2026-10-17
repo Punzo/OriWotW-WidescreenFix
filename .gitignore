@@ -13,3 +13,7 @@
 *.user
 *.suo
 *.swp
+
+# Release packages
+release/
+*.zip
