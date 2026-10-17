@@ -33,6 +33,18 @@ The zip already contains [BepInEx 6](https://github.com/BepInEx/BepInEx) (bleedi
 
 To uninstall, delete `winhttp.dll`, `doorstop_config.ini`, `.doorstop_version` and the `BepInEx` and `dotnet` folders from the game folder.
 
+### Linux / Steam Deck (Proton) (untested)
+The game is Windows-only on Steam, so on Linux and Steam Deck it runs through Proton, and the same zip is used.
+1. Install as above: extract the zip into the game folder.
+2. In Steam, right-click the game → *Properties* → *Launch Options*, and enter:
+	```
+	WINEDLLOVERRIDES="winhttp=n,b" %command%
+	```
+	Without this, Proton uses its own `winhttp.dll` and BepInEx (and the fix) never loads.
+3. Launch the game. The first start takes a few minutes, as on Windows.
+
+This is the standard way to run BepInEx under Proton, but it has not been tested with this game yet. Feedback is welcome.
+
 ## Configuration
 After the first launch, edit `BepInEx/config/com.punzo.oriwotw.widescreenfix.cfg`:
 
